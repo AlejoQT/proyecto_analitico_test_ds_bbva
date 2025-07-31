@@ -24,3 +24,11 @@ class Utils:
         
         df.to_csv(path, index=False)
         print(f"💾 DataFrame guardado exitosamente en: {path}")
+        
+    @staticmethod
+    def save_dataframe(df: pd.DataFrame, path: str):
+        try:
+            df.to_csv(path, index=False)
+            print(f"💾 DataFrame guardado exitosamente en: {path}")
+        except PermissionError:
+            print(f"❌ No se pudo guardar el archivo. Verifica que no esté abierto: {path}")

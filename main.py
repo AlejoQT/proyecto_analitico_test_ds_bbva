@@ -22,8 +22,8 @@ def main():
     # TODO: Carga las tablas de 'accounts' y 'transactions' usando la función Utils.load_table()
     # y las constantes correspondientes.
     customers = Utils.load_table(CUSTOMERS_PATH)
-    accounts = 
-    transactions = 
+    accounts = Utils.load_table(ACCOUNTS_PATH)
+    transactions = Utils.load_table(TRANSACTIONS_PATH)
 
     # Instanciar los transformadores
     integrator = IntegrationTransformer()
@@ -42,11 +42,20 @@ def main():
     # Paso 5: Guardar el resultado
     # TODO: Llama a la función Utils.save_dataframe() para guardar 'final_feature_table'.
     # Pasa la ruta de salida (OUTPUT_PATH) y un nombre de archivo, por ejemplo 'feature_table.csv'.
-    
+    Utils.save_dataframe(final_feature_table, OUTPUT_PATH + 'feature_table.csv')
 
     print("\n===== PIPELINE COMPLETADO CON ÉXITO =====")
     print("\n📊 Muestra del Tablón de Features Final:")
     print(final_feature_table.head())
+
+    
+    """
+    ## Generando una mejor visualizacion
+    from tabulate import tabulate
+
+    print("\n📊 Muestra del Tablón de Features Final:")
+    print(tabulate(final_feature_table.head(), headers='keys', tablefmt='fancy_grid'))
+    """
     
     print("\n📋 Información del Tablón Final:")
     final_feature_table.info()
@@ -54,5 +63,5 @@ def main():
 
 if __name__ == "__main__":
     pd.set_option('display.max_columns', None)
-    pd.set_option('display.width', 1000)
+    pd.set_option('display.width', 2000)
     main()
